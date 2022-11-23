@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "include/nn/networks/td_lambda.h"
+#include "include/nn/networks/lstm_incremental_networks.h"
 #include "include/utils.h"
 #include "include/nn/utils.h"
 #include "include/experiment/Experiment.h"
