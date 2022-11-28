@@ -13,10 +13,11 @@ rnn = nn.LSTM(5, hidden_units, 1)
 
 
 for name, param in rnn.named_parameters():
-    print(name, param.data)
+    pass
+    # print(name, param.data)
 if name == "bias_hh_l0":
     param.data = param.data*0
-print(param)
+# print(param)
 
 
 inp = torch.zeros(1, 1,5)
@@ -35,11 +36,12 @@ inputs = [[ 0.097627, 0.185689, 0.430379, 0.688532, 0.205527], [ 0.715891, 0.089
 inputs = [torch.tensor(x).view(1, 1, -1) for x in inputs]
 
 sum_of_h = None
+h_mean = 0;
+h_var = 1
 inputs_mean = torch.zeros(inputs[0].shape)
 inputs_std = torch.zeros(inputs[0].shape) + 1
 decay_rate = 0.99
 std_cap = 0.001
-
 for steps in range(0, 1000):
     # print("H = ", h0)
     # print("C = ", c0)
@@ -51,7 +53,16 @@ for steps in range(0, 1000):
     for a in range(0, len(inputs_std[0,0])):
         if inputs_std[0,0,a] < std_cap:
             inputs_std[0,0,a] = std_cap
+    # print("Test", h0)
+    h_mean = h_mean*decay_rate + (1-decay_rate )*h0.detach()
+    h_var = h_var*decay_rate + (1-decay_rate)*(h0.detach()-h_mean)**2
 
+    if h_var < std_cap:
+        h_var = std_cap
+    # print(h_mean, h_var)
+    # print(h_var)
+    # print("MEAN VAR", h_mean, h_var)
+    h0 = (h0 - h_mean)/torch.sqrt(h_var)
     if sum_of_h is None:
         sum_of_h = output
     else:
