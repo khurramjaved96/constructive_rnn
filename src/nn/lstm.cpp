@@ -4,6 +4,7 @@
 
 
 #include "../../include/nn/neuron.h"
+#include "../../include/nn/lstm.h"
 #include <assert.h>
 #include <iostream>
 #include <utility>
@@ -14,7 +15,7 @@
 #include "../../include/utils.h"
 #include "../../include/nn/utils.h"
 
-LSTM::LSTM(float ui, float uf, float ug, float uo, float bi, float bf, float bg, float bo, float std_cap)
+LSTM::LSTM(float ui, float uf, float ug, float uo, float bi, float bf, float bg, float bo, float std_cap, float decay_rate)
     : Neuron(false, false) {
   this->std_cap = std_cap;
 
@@ -36,6 +37,7 @@ LSTM::LSTM(float ui, float uf, float ug, float uo, float bi, float bf, float bg,
   b_f = bf;
   b_g = bg;
   b_o = bo;
+  this->decay_rate = decay_rate;
 }
 
 float LSTM::forward(float temp_value) {
