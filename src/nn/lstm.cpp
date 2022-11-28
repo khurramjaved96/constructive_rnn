@@ -84,8 +84,6 @@ void LSTM::fire() {
 
   this->value = h;
   this->neuron_age++;
-  update_statistics();
-
 }
 
 void LSTM::compute_gradient_of_all_synapses() {
@@ -225,6 +223,7 @@ void LSTM::compute_gradient_of_all_synapses() {
     Cu_i = f * Cu_i + old_c * df_dui + i_val * dg_dui + g * di_dui;
     Hu_i = o * (1 - tanh_of_c * tanh_of_c) * Cu_i + tanh_of_c * do_dui;
   }
+  update_statistics();
 }
 
 int LSTM::get_users() {
