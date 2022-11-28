@@ -447,58 +447,6 @@ void LSTM::update_value_sync() {
   h = o * tanh(c);
 }
 
-void LSTM::update_value() {
-
-  this->value_before_firing = 0;
-  old_h = h;
-  old_c = c;
-//  Adding bias value
-  i_val = b_i;
-  g = b_g;
-  f = b_f;
-  o = b_o;
-
-
-//  Non-bias terms connections except the self connection
-//  for (auto &it: this->incoming_synapses) {
-//    std::cout << it->input_neuron->value << std::endl;
-//  }
-//  exit(0);
-  auto x = get_normalized_values();
-  for (int counter = 0; counter < x.size(); counter++) {
-//    std::cout << w_i[counter] << "*" << it->input_neuron->value << std::endl;
-//    std::cout << "ID " << it->id <<  " it->value = " << it->value << std::endl;
-    i_val += this->w_i[counter] * x[counter];
-    f += this->w_f[counter] * x[counter];
-    g += this->w_g[counter] * x[counter];
-    o += this->w_o[counter] * x[counter];
-
-  }
-
-//  Self connection
-  i_val += u_i * old_h;
-  g += u_g * old_h;
-  f += u_f * old_h;
-  o += u_o * old_h;
-
-
-//  Applying non-linear transformations and updating the hidden state;
-  i_val = sigmoid(i_val);
-  f = sigmoid(f);
-  o = sigmoid(o);
-  g = tanh(g);
-
-  c = f * old_c + i_val * g;
-  h = o * tanh(c);
-//  std::cout << "LSTM status " << i_val << " " << f << " " << o << " " << g << std::endl;
-//  std::cout << "H = " << h << std::endl;
-  this->value = h;
-  this->value_before_firing = h;
-//  if(this->id == 29)
-//    std::cout << h << std::endl;
-
-}
-
 float LSTM::get_hidden_state() {
   return this->h;
 }
@@ -515,9 +463,9 @@ std::vector<float> LSTM::get_normalized_values() {
 void LSTM::update_statistics() {
   for (int counter = 0; counter < this->incoming_neurons.size(); counter++) {
     float val = this->incoming_neurons[counter]->value;
-    this->input_means[counter] = this->input_means[counter] * 0.99999 + 0.00001 * val;
-    this->input_std[counter] = this->input_std[counter] * 0.99999
-        + 0.00001 * (val - this->input_means[counter]) * (val - this->input_means[counter]);
+    this->input_means[counter] = this->input_means[counter] * this->decay_rate + (1 - decay_rate) * val;
+    this->input_std[counter] = this->input_std[counter] * decay_rate
+        + (1 - decay_rate) * (val - this->input_means[counter]) * (val - this->input_means[counter]);
     if (this->input_std[counter] < this->std_cap)
       this->input_std[counter] = this->std_cap;
   }
@@ -546,5 +494,275 @@ void LSTM::add_synapse(Neuron *s, float w_i, float w_f, float w_g, float w_o) {
   this->Gw_f.push_back(0);
   this->Gw_g.push_back(0);
   this->Gw_o.push_back(0);
+
+}
+
+LSTMNormalied::LSTMNormalied(float ui,
+                             float uf,
+                             float ug,
+                             float uo,
+                             float bi,
+                             float bf,
+                             float bg,
+                             float bo,
+                             float std_cap,
+                             float decay_rate) : LSTM(ui, uf, ug, uo, bi, bf, bg, bo, std_cap, decay_rate) {
+  this->state_mean = 0;
+  this->state_variance = 1;
+}
+
+void LSTMNormalied::update_statistics() {
+  LSTM::update_statistics();
+  float temp = this->decay_rate;
+//  this->decay_rate = 0.99;
+  this->state_mean = this->state_mean * this->decay_rate + (1 - this->decay_rate) * this->value;
+  float val_minus_mean = this->value - this->state_mean;
+  this->state_variance = this->state_variance * this->decay_rate
+      + (1 - this->decay_rate) * val_minus_mean * val_minus_mean;
+  if(this->state_variance < this->std_cap)
+    this->state_variance = this->std_cap;
+//  this->decay_rate = temp;
+//  std::cout << "Mean " << this->state_mean << " " << this->state_variance << std::endl;
+//  this->state_mean = -2;
+//  this->state_variance = 9;
+}
+
+
+void LSTMNormalied::update_value_sync() {
+  this->value_before_firing = 0;
+  old_h = h;
+  old_c = c;
+//  Adding bias value
+  i_val = b_i;
+  g = b_g;
+  f = b_f;
+  o = b_o;
+
+
+//  Non-bias terms connections except the self connection
+//  for (auto &it: this->incoming_synapses) {
+//    std::cout << it->input_neuron->value << std::endl;
+//  }
+//  exit(0);
+  auto x = get_normalized_values();
+  for (int counter = 0; counter < x.size(); counter++) {
+//    std::cout << w_i[counter] << "*" << it->input_neuron->value << std::endl;
+//    std::cout << "ID " << it->id <<  " it->value = " << it->value << std::endl;
+    i_val += this->w_i[counter] * x[counter];
+    f += this->w_f[counter] * x[counter];
+    g += this->w_g[counter] * x[counter];
+    o += this->w_o[counter] * x[counter];
+  }
+
+//  Self connection
+  float normalized_old_h = this->get_normalized_hidden_state(old_h);
+  i_val += u_i * normalized_old_h;
+  g += u_g * normalized_old_h;
+  f += u_f * normalized_old_h;
+  o += u_o * normalized_old_h;
+
+
+//  Applying non-linear transformations and updating the hidden state;
+  i_val = sigmoid(i_val);
+  f = sigmoid(f);
+  o = sigmoid(o);
+  g = tanh(g);
+
+  c = f * old_c + i_val * g;
+  h = o * tanh(c);
+}
+
+float LSTMNormalied::get_normalized_hidden_state(float h) {
+  return (h - this->state_mean)/(sqrt(state_variance));
+}
+void LSTMNormalied::compute_gradient_of_all_synapses() {
+  std::vector<float> x = get_normalized_values();
+  int n = this->incoming_neurons.size();
+
+//  Computing terms that are reused to save flops
+
+  float LHS_g = (1 - (g * g));
+  float LHS_f = f * (1 - f);
+  float LHS_i = i_val * (1 - i_val);
+  float LHS_o = o * (1 - o);
+  float tanh_of_c = tanh(c);
+
+
+//  Section 1.1
+
+  for (int i = 0; i < n; i++) {
+    float dg_dWi = LHS_g * (u_g * (Hw_i[i]/sqrt(state_variance)));
+    float df_dWi = LHS_f * (u_f * (Hw_i[i]/sqrt(state_variance)));
+    float di_dWi = LHS_i * (x[i] + u_i * (Hw_i[i]/sqrt(state_variance)));
+    float do_dWi = LHS_o * (u_o * (Hw_i[i]/sqrt(state_variance)));
+    Cw_i[i] = f * Cw_i[i] + old_c * df_dWi + i_val * dg_dWi + g * di_dWi;
+    Hw_i[i] = o * (1 - tanh_of_c * tanh_of_c) * Cw_i[i] + tanh_of_c * do_dWi;
+  }
+
+//  Section 1.4
+  for (int i = 0; i < n; i++) {
+    float dg_dWF = LHS_g * (u_g * (Hw_f[i]/sqrt(state_variance)));
+    float df_dWF = LHS_f * (x[i] + u_f * (Hw_f[i]/sqrt(state_variance)));
+    float di_dWF = LHS_i * (u_i * (Hw_f[i]/sqrt(state_variance)));
+    float do_dWF = LHS_o * (u_o * (Hw_f[i]/sqrt(state_variance)));
+    Cw_f[i] = f * Cw_f[i] + old_c * df_dWF + i_val * dg_dWF + g * di_dWF;
+    Hw_f[i] = o * (1 - tanh_of_c * tanh_of_c) * Cw_f[i] + tanh_of_c * do_dWF;
+  }
+
+//  Section 1.5
+  for (int i = 0; i < n; i++) {
+    float dg_dWo = LHS_g * (u_g * (Hw_o[i]/sqrt(state_variance)));
+    float df_dWo = LHS_f * (u_f * (Hw_o[i]/sqrt(state_variance)));
+    float di_dWo = LHS_i * (u_i * (Hw_o[i]/sqrt(state_variance)));
+    float do_dWo = LHS_o * (x[i] + u_o * (Hw_o[i]/sqrt(state_variance)));
+    Cw_o[i] = f * Cw_o[i] + old_c * df_dWo + i_val * dg_dWo + g * di_dWo;
+    Hw_o[i] = o * (1 - tanh_of_c * tanh_of_c) * Cw_o[i] + tanh_of_c * do_dWo;
+  }
+
+//  Section 1.6
+  for (int i = 0; i < n; i++) {
+    float dg_dWg = LHS_g * (x[i] + u_g * (Hw_g[i]/sqrt(state_variance)));
+    float df_dWg = LHS_f * (u_f * (Hw_g[i]/sqrt(state_variance)));
+    float di_dWg = LHS_i * (u_i * (Hw_g[i]/sqrt(state_variance)));
+    float do_dWg = LHS_o * (u_o * (Hw_g[i]/sqrt(state_variance)));
+    Cw_g[i] = f * Cw_g[i] + old_c * df_dWg + i_val * dg_dWg + g * di_dWg;
+    Hw_g[i] = o * (1 - tanh_of_c * tanh_of_c) * Cw_g[i] + tanh_of_c * do_dWg;
+  }
+
+
+//  Section 1.11
+  {
+    float dg_dbf = LHS_g * (u_g * (Hb_f/sqrt(state_variance)));
+    float df_dbf = LHS_f * (1 + u_f * (Hb_f/sqrt(state_variance)));
+    float di_dbf = LHS_i * (u_i * (Hb_f/sqrt(state_variance)));
+    float do_dbf = LHS_o * (u_o * (Hb_f/sqrt(state_variance)));
+    Cb_f = f * Cb_f + old_c * df_dbf + i_val * dg_dbf + g * di_dbf;
+    Hb_f = o * (1 - tanh_of_c * tanh_of_c) * Cb_f + tanh_of_c * do_dbf;
+  }
+
+//  Section 1.10
+  {
+    float dg_dbg = LHS_g * (1 + u_g * (Hb_g/sqrt(state_variance)));
+    float df_dbg = LHS_f * (u_f * (Hb_g/sqrt(state_variance)));
+    float di_dbg = LHS_i * (u_i * (Hb_g/sqrt(state_variance)));
+    float do_dbg = LHS_o * (u_o * (Hb_g/sqrt(state_variance)));
+    Cb_g = f * Cb_g + old_c * df_dbg + i_val * dg_dbg + g * di_dbg;
+    Hb_g = o * (1 - tanh_of_c * tanh_of_c) * Cb_g + tanh_of_c * do_dbg;
+  }
+
+// Section 1.12
+  {
+    float dg_dbo = LHS_g * (u_g * (Hb_o/sqrt(state_variance)));
+    float df_dbo = LHS_f * (u_f * (Hb_o/sqrt(state_variance)));
+    float di_dbo = LHS_i * (u_i * (Hb_o/sqrt(state_variance)));
+    float do_dbo = LHS_o * (1 + u_o * (Hb_o/sqrt(state_variance)));
+    Cb_o = f * Cb_o + old_c * df_dbo + i_val * dg_dbo + g * di_dbo;
+    Hb_o = o * (1 - tanh_of_c * tanh_of_c) * Cb_o + tanh_of_c * do_dbo;
+  }
+
+//  Section 1.3
+  {
+    float dg_dbi = LHS_g * (u_g * (Hb_i/sqrt(state_variance)));
+    float df_dbi = LHS_f * (u_f * (Hb_i/sqrt(state_variance)));
+    float di_dbi = LHS_i * (1 + u_i * (Hb_i/sqrt(state_variance)));
+    float do_dbi = LHS_o * (u_o * (Hb_i/sqrt(state_variance)));
+    Cb_i = f * Cb_i + old_c * df_dbi + i_val * dg_dbi + g * di_dbi;
+    Hb_i = o * (1 - tanh_of_c * tanh_of_c) * Cb_i + tanh_of_c * do_dbi;
+  }
+
+
+//  Section 1.8
+  {
+    float dg_duf = LHS_g * (u_g * (Hu_f/sqrt(state_variance)));
+    float df_duf = LHS_f * (get_normalized_hidden_state(old_h) + u_f * (Hu_f/sqrt(state_variance)));
+    float di_duf = LHS_i * (u_i * (Hu_f/sqrt(state_variance)));
+    float do_duf = LHS_o * (u_o * (Hu_f/sqrt(state_variance)));
+    Cu_f = f * Cu_f + old_c * df_duf + i_val * dg_duf + g * di_duf;
+    Hu_f = o * (1 - tanh_of_c * tanh_of_c) * Cu_f + tanh_of_c * do_duf;
+  }
+
+//  Section 1.7
+  {
+    float dg_duo = LHS_g * (u_g * (Hu_o/sqrt(state_variance)));
+    float df_duo = LHS_f * (u_f * (Hu_o/sqrt(state_variance)));
+    float di_duo = LHS_i * (u_i * (Hu_o/sqrt(state_variance)));
+    float do_duo = LHS_o * (get_normalized_hidden_state(old_h) + u_o * (Hu_o/sqrt(state_variance)));
+    Cu_o = f * Cu_o + old_c * df_duo + i_val * dg_duo + g * di_duo;
+    Hu_o = o * (1 - tanh_of_c * tanh_of_c) * Cu_o + tanh_of_c * do_duo;
+  }
+
+
+//  Section 1.9
+  {
+    float dg_dug = LHS_g * (get_normalized_hidden_state(old_h) + u_g * (Hu_g/sqrt(state_variance)));
+    float df_dug = LHS_f * (u_f * (Hu_g/sqrt(state_variance)));
+    float di_dug = LHS_i * (u_i * (Hu_g/sqrt(state_variance)));
+    float do_dug = LHS_o * (u_o * (Hu_g/sqrt(state_variance)));
+    Cu_g = f * Cu_g + old_c * df_dug + i_val * dg_dug + g * di_dug;
+    Hu_g = o * (1 - tanh_of_c * tanh_of_c) * Cu_g + tanh_of_c * do_dug;
+  }
+
+
+//  Section 1.2
+  {
+    float dg_dui = LHS_g * (u_g * (Hu_i/sqrt(state_variance)));
+    float df_dui = LHS_f * (u_f * (Hu_i/sqrt(state_variance)));
+    float di_dui = LHS_i * (get_normalized_hidden_state(old_h) + u_i * (Hu_i/sqrt(state_variance)));
+    float do_dui = LHS_o * (u_o * (Hu_i/sqrt(state_variance)));
+    Cu_i = f * Cu_i + old_c * df_dui + i_val * dg_dui + g * di_dui;
+    Hu_i = o * (1 - tanh_of_c * tanh_of_c) * Cu_i + tanh_of_c * do_dui;
+  }
+  update_statistics();
+}
+
+
+float LSTMNormalied::get_value_without_sideeffects() {
+
+  float i_val_t, g_t, f_t, o_t;
+  float old_h_t, old_c_t;
+
+  old_h_t = get_normalized_hidden_state(h);
+  old_c_t = c;
+
+  i_val_t = b_i;
+  g_t = b_g;
+  f_t = b_f;
+  o_t = b_o;
+
+//  Non-bias terms connections except the self connection
+//  for (auto &it: this->incoming_synapses) {
+//    std::cout << it->input_neuron->value << std::endl;
+//  }
+//  exit(0);
+  auto x = get_normalized_values();
+  for (int counter_t = 0; counter_t < x.size(); counter_t++) {
+    i_val_t += this->w_i[counter_t] * x[counter_t];
+    f_t += this->w_f[counter_t] * x[counter_t];
+    g_t += this->w_g[counter_t] * x[counter_t];
+    o_t += this->w_o[counter_t] * x[counter_t];
+  }
+
+//  Self connection
+  i_val_t += u_i * old_h_t;
+  g_t += u_g * old_h_t;
+  f_t += u_f * old_h_t;
+  o_t += u_o * old_h_t;
+
+
+//  Applying non-linear transformations and updating the hidden state;
+  i_val_t = sigmoid(i_val_t);
+  f_t = sigmoid(f_t);
+  o_t = sigmoid(o_t);
+  g_t = tanh(g_t);
+
+  float c_t = f_t * old_c_t + i_val_t * g_t;
+  float h_t = o_t * tanh(c_t);
+  return h_t;
+}
+
+void LSTMNormalied::fire() {
+
+  this->value = h;
+  this->neuron_age++;
 
 }
