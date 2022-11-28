@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include "../../../include/nn/networks/recurrent_network.h"
+#include "../../../include/nn/lstm.h"
 
 RecurrentNetwork::RecurrentNetwork(float step_size,
                                    int seed,

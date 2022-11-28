@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include "../../../include/nn/networks/recurrent_network_multilayer.h"
+#include "../../../include/nn/lstm.h"
 
 RecurrentNetworkMultilayer::RecurrentNetworkMultilayer(float step_size,
                                    int seed,

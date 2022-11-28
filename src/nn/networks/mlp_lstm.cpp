@@ -8,6 +8,7 @@
 #include <iostream>
 #include "../../../include/nn/networks/mlp_lstm.h"
 #include "../../../include/nn/neuron.h"
+#include "../../../include/nn/lstm.h"
 
 
 void DeepLSTM::print_network_state(int layer_no) {

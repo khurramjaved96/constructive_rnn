@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include "../../../include/nn/networks/recurrent_classifier_network.h"
+#include "../../../include/nn/lstm.h"
 
 RecurrentClassifierNetwork::RecurrentClassifierNetwork(float step_size,
                                                        int seed,

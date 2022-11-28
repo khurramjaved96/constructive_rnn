@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <vector>
 #include "../../include/utils.h"
+#include "../../include/nn/lstm.h"
 
 Neuron::Neuron(bool is_input, bool is_output) {
   value = 0;
