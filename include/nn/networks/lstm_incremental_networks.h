@@ -14,6 +14,7 @@
 #include "../neuron.h"
 #include "../dynamic_elem.h"
 #include "./neural_network.h"
+#include "../lstm.h"
 #include "base_lstm.h"
 
 class IncrementalNetworks : public BaseLSTM {

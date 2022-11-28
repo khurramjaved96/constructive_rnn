@@ -8,6 +8,7 @@
 #include <vector>
 #include <map>
 #include <random>
+#include "../lstm.h"
 #include <string>
 #include "../synapse.h"
 #include "../neuron.h"

@@ -14,6 +14,7 @@
 #include "../neuron.h"
 #include "../dynamic_elem.h"
 #include "./neural_network.h"
+#include "../lstm.h"
 
 class Snap1 {
  protected:

@@ -16,6 +16,7 @@
 #include "./message.h"
 #include "./utils.h"
 
+
 class Neuron : public dynamic_elem {
  public:
   bool frozen;
@@ -101,125 +102,6 @@ class RecurrentRelu : public Neuron {
 
 };
 
-class LSTM : public Neuron{
-
-//  Variables for making predictions
-  std::vector<float> w_i;
-  std::vector<float> w_f;
-  std::vector<float> w_g;
-  std::vector<float> w_o;
-  std::vector<float> input_means;
-  std::vector<float> input_std;
-
-
-  float std_cap;
-
-  float u_i, u_f, u_g, u_o;
-  float b_i, b_f, b_g, b_o;
-  float c;
-  float h;
-  float old_c;
-  float old_h;
-  float i_val;
-  float f;
-  float g;
-  float o;
-
-//  Variables for computing the gradient
-  std::vector<float> Hw_i;
-  std::vector<float> Hw_f;
-  std::vector<float> Hw_g;
-  std::vector<float> Hw_o;
-
-  std::vector<float> Cw_i;
-  std::vector<float> Cw_f;
-  std::vector<float> Cw_g;
-  std::vector<float> Cw_o;
-
-  float Hu_i, Hu_f, Hu_g, Hu_o;
-  float Cu_i, Cu_f, Cu_g, Cu_o;
-
-  float Hb_i, Hb_f, Hb_g, Hb_o;
-  float Cb_i, Cb_f, Cb_g, Cb_o;
-
-
-//  Variable for storing gradients
-  std::vector<float> Gw_i;
-  std::vector<float> Gw_f;
-  std::vector<float> Gw_g;
-  std::vector<float> Gw_o;
-
-  float Gu_i, Gu_f, Gu_g, Gu_o;
-
-  float Gb_i, Gb_f, Gb_g, Gb_o;
-
-  int users;
-
-  float copy_of_h;
-
-
- public:
-
-  void update_statistics();
-
-  std::vector<float> get_normalized_values();
-
-  std::vector<Neuron *> incoming_neurons;
-
-  float get_value_without_sideeffects();
-
-  int get_users();
-
-  void decay_gradient(float decay_rate);
-
-  void increment_user();
-
-  void decrement_user();
-
-  void update_value_delay();
-
-  void update_value_sync();
-
-  void reset_state();
-
-  void zero_grad();
-
-  void accumulate_gradient(float incoming_grad);
-
-  void print_gradients();
-
-  float get_hidden_state();
-
-  void update_weights(float step_size);
-
-  void update_weights(float step_size, float error);
-
-  void add_synapse(Neuron* s, float w_i, float w_f, float w_g, float w_o);
-
-  float old_value;
-
-  bool learning = true;
-
-  void disable_learning();
-
-  void enable_learning();
-
-  void compute_gradient_of_all_synapses();
-
-  void update_value();
-
-  float backward(float output_grad);
-
-  float forward(float temp_value);
-
-  Synapse* recurrent_synapse;
-
-  LSTM(float ui, float uf, float ug, float uo, float bi, float bf, float bg, float bo, float std_cap);
-
-  void fire();
-
-
-};
 
 class BiasNeuron : public Neuron {
  public:

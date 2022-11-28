@@ -13,6 +13,7 @@
 #include "../synapse.h"
 #include "../neuron.h"
 #include "../dynamic_elem.h"
+#include "../lstm.h"
 #include "./neural_network.h"
 
 class DeepLSTM {

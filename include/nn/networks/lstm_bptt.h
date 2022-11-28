@@ -12,6 +12,7 @@
 #include <string>
 #include "../synapse.h"
 #include "../neuron.h"
+#include "../lstm.h"
 #include "../dynamic_elem.h"
 #include "./neural_network.h"
 #include "base_lstm.h"
