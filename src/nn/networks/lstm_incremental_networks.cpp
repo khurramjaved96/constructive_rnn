@@ -39,7 +39,7 @@ IncrementalNetworks::IncrementalNetworks(float step_size,
                      weight_sampler(mt),
                      weight_sampler(mt),
                      weight_sampler(mt),
-                     this->std_cap);
+                     this->std_cap, 0.99999);
 //    for (int counter = 0; counter < this->input_neurons.size(); counter++) {
 //      Neuron *neuron_ref = &this->input_neurons[counter];
 //      lstm_neuron.add_synapse(neuron_ref,
@@ -149,7 +149,7 @@ Snap1::Snap1(float step_size,
                      weight_sampler(mt),
                      weight_sampler(mt),
                      weight_sampler(mt),
-                     this->std_cap);
+                     this->std_cap, 0.99999);
 
     indexes_lstm_cells.push_back(i);
     this->LSTM_neurons.push_back(lstm_neuron);

@@ -37,7 +37,7 @@ Snap1::Snap1(float step_size,
                      weight_sampler(mt),
                      weight_sampler(mt),
                      weight_sampler(mt),
-                     0.01);
+                     0.01, 0.99999);
     for (int counter = 0; counter < this->input_neurons.size(); counter++) {
       Neuron *neuron_ref = &this->input_neurons[counter];
       lstm_neuron.add_synapse(neuron_ref,

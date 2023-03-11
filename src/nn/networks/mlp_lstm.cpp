@@ -49,7 +49,7 @@ DeepLSTM::DeepLSTM(float step_size,
                        weight_sampler(mt),
                        weight_sampler(mt),
                        weight_sampler(mt)
-                       ,0.01);
+                       ,0.01, 0.99999);
 //      if(layer == 0) {
         for (int counter = 0; counter < this->input_neurons.size(); counter++) {
           Neuron *neuron_ref = &this->input_neurons[counter];
