@@ -1,6 +1,6 @@
 # Online Real-Time Recurrent Learning Using Sparse Connections and Selective Learning
 
-**Paper:** [link here](#)
+**Paper:** [link here](https://arxiv.org/pdf/2302.05326.pdf)
 
 **ALE policy evaluation dataset:** [link here](https://drive.google.com/drive/folders/19AwuhsZdFUpyb-kHxAIzaYewCqF1pPxw?usp=sharing)
 
