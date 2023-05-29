@@ -16,77 +16,85 @@
 #include <google/protobuf/port_def.inc>
 
 PROTOBUF_PRAGMA_INIT_SEG
+
+namespace _pb = ::PROTOBUF_NAMESPACE_ID;
+namespace _pbi = _pb::internal;
+
 namespace atari_prediction {
-constexpr ExperienceBuffer_Experience::ExperienceBuffer_Experience(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : sensor_reading_()
-  , reward_(0)
-  , done_(false)
-  , action_(0){}
+PROTOBUF_CONSTEXPR ExperienceBuffer_Experience::ExperienceBuffer_Experience(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.sensor_reading_)*/{}
+  , /*decltype(_impl_.reward_)*/0
+  , /*decltype(_impl_.done_)*/false
+  , /*decltype(_impl_.action_)*/0} {}
 struct ExperienceBuffer_ExperienceDefaultTypeInternal {
-  constexpr ExperienceBuffer_ExperienceDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR ExperienceBuffer_ExperienceDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~ExperienceBuffer_ExperienceDefaultTypeInternal() {}
   union {
     ExperienceBuffer_Experience _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ExperienceBuffer_ExperienceDefaultTypeInternal _ExperienceBuffer_Experience_default_instance_;
-constexpr ExperienceBuffer::ExperienceBuffer(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : experiences_()
-  , enviroment_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , policy_type_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExperienceBuffer_ExperienceDefaultTypeInternal _ExperienceBuffer_Experience_default_instance_;
+PROTOBUF_CONSTEXPR ExperienceBuffer::ExperienceBuffer(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.experiences_)*/{}
+  , /*decltype(_impl_.enviroment_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.policy_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
 struct ExperienceBufferDefaultTypeInternal {
-  constexpr ExperienceBufferDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR ExperienceBufferDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~ExperienceBufferDefaultTypeInternal() {}
   union {
     ExperienceBuffer _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ExperienceBufferDefaultTypeInternal _ExperienceBuffer_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExperienceBufferDefaultTypeInternal _ExperienceBuffer_default_instance_;
 }  // namespace atari_prediction
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_experience_2eproto[2];
-static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_experience_2eproto = nullptr;
-static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_experience_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_experience_2eproto[2];
+static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_experience_2eproto = nullptr;
+static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_experience_2eproto = nullptr;
 
 const uint32_t TableStruct_experience_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, reward_),
-  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, sensor_reading_),
-  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, done_),
-  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, action_),
+  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, _impl_.reward_),
+  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, _impl_.sensor_reading_),
+  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, _impl_.done_),
+  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer_Experience, _impl_.action_),
   0,
   ~0u,
   1,
   2,
-  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer, enviroment_name_),
-  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer, policy_type_),
-  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer, experiences_),
+  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer, _impl_.enviroment_name_),
+  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer, _impl_.policy_type_),
+  PROTOBUF_FIELD_OFFSET(::atari_prediction::ExperienceBuffer, _impl_.experiences_),
   0,
   1,
   ~0u,
 };
-static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 10, -1, sizeof(::atari_prediction::ExperienceBuffer_Experience)},
   { 14, 23, -1, sizeof(::atari_prediction::ExperienceBuffer)},
 };
 
-static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::atari_prediction::_ExperienceBuffer_Experience_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::atari_prediction::_ExperienceBuffer_default_instance_),
+static const ::_pb::Message* const file_default_instances[] = {
+  &::atari_prediction::_ExperienceBuffer_Experience_default_instance_._instance,
+  &::atari_prediction::_ExperienceBuffer_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_experience_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -98,26 +106,28 @@ const char descriptor_table_protodef_experience_2eproto[] PROTOBUF_SECTION_VARIA
   "\002\022\026\n\016sensor_reading\030\002 \003(\002\022\014\n\004done\030\003 \002(\010\022"
   "\016\n\006action\030\004 \002(\005"
   ;
-static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_experience_2eproto_once;
-const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_experience_2eproto = {
-  false, false, 255, descriptor_table_protodef_experience_2eproto, "experience.proto", 
-  &descriptor_table_experience_2eproto_once, nullptr, 0, 2,
-  schemas, file_default_instances, TableStruct_experience_2eproto::offsets,
-  file_level_metadata_experience_2eproto, file_level_enum_descriptors_experience_2eproto, file_level_service_descriptors_experience_2eproto,
+static ::_pbi::once_flag descriptor_table_experience_2eproto_once;
+const ::_pbi::DescriptorTable descriptor_table_experience_2eproto = {
+    false, false, 255, descriptor_table_protodef_experience_2eproto,
+    "experience.proto",
+    &descriptor_table_experience_2eproto_once, nullptr, 0, 2,
+    schemas, file_default_instances, TableStruct_experience_2eproto::offsets,
+    file_level_metadata_experience_2eproto, file_level_enum_descriptors_experience_2eproto,
+    file_level_service_descriptors_experience_2eproto,
 };
-PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable* descriptor_table_experience_2eproto_getter() {
+PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_experience_2eproto_getter() {
   return &descriptor_table_experience_2eproto;
 }
 
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_experience_2eproto(&descriptor_table_experience_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_experience_2eproto(&descriptor_table_experience_2eproto);
 namespace atari_prediction {
 
 // ===================================================================
 
 class ExperienceBuffer_Experience::_Internal {
  public:
-  using HasBits = decltype(std::declval<ExperienceBuffer_Experience>()._has_bits_);
+  using HasBits = decltype(std::declval<ExperienceBuffer_Experience>()._impl_._has_bits_);
   static void set_has_reward(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -134,51 +144,58 @@ class ExperienceBuffer_Experience::_Internal {
 
 ExperienceBuffer_Experience::ExperienceBuffer_Experience(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  sensor_reading_(arena) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:atari_prediction.ExperienceBuffer.Experience)
 }
 ExperienceBuffer_Experience::ExperienceBuffer_Experience(const ExperienceBuffer_Experience& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_),
-      sensor_reading_(from.sensor_reading_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ExperienceBuffer_Experience* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.sensor_reading_){from._impl_.sensor_reading_}
+    , decltype(_impl_.reward_){}
+    , decltype(_impl_.done_){}
+    , decltype(_impl_.action_){}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&reward_, &from.reward_,
-    static_cast<size_t>(reinterpret_cast<char*>(&action_) -
-    reinterpret_cast<char*>(&reward_)) + sizeof(action_));
+  ::memcpy(&_impl_.reward_, &from._impl_.reward_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.action_) -
+    reinterpret_cast<char*>(&_impl_.reward_)) + sizeof(_impl_.action_));
   // @@protoc_insertion_point(copy_constructor:atari_prediction.ExperienceBuffer.Experience)
 }
 
-inline void ExperienceBuffer_Experience::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&reward_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&action_) -
-    reinterpret_cast<char*>(&reward_)) + sizeof(action_));
+inline void ExperienceBuffer_Experience::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.sensor_reading_){arena}
+    , decltype(_impl_.reward_){0}
+    , decltype(_impl_.done_){false}
+    , decltype(_impl_.action_){0}
+  };
 }
 
 ExperienceBuffer_Experience::~ExperienceBuffer_Experience() {
   // @@protoc_insertion_point(destructor:atari_prediction.ExperienceBuffer.Experience)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 inline void ExperienceBuffer_Experience::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.sensor_reading_.~RepeatedField();
 }
 
-void ExperienceBuffer_Experience::ArenaDtor(void* object) {
-  ExperienceBuffer_Experience* _this = reinterpret_cast< ExperienceBuffer_Experience* >(object);
-  (void)_this;
-}
-void ExperienceBuffer_Experience::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void ExperienceBuffer_Experience::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ExperienceBuffer_Experience::Clear() {
@@ -187,29 +204,29 @@ void ExperienceBuffer_Experience::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  sensor_reading_.Clear();
-  cached_has_bits = _has_bits_[0];
+  _impl_.sensor_reading_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
-    ::memset(&reward_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&action_) -
-        reinterpret_cast<char*>(&reward_)) + sizeof(action_));
+    ::memset(&_impl_.reward_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&_impl_.action_) -
+        reinterpret_cast<char*>(&_impl_.reward_)) + sizeof(_impl_.action_));
   }
-  _has_bits_.Clear();
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* ExperienceBuffer_Experience::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* ExperienceBuffer_Experience::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // required float reward = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
           _Internal::set_has_reward(&has_bits);
-          reward_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          _impl_.reward_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -234,7 +251,7 @@ const char* ExperienceBuffer_Experience::_InternalParse(const char* ptr, ::PROTO
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _Internal::set_has_done(&has_bits);
-          done_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.done_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -243,7 +260,7 @@ const char* ExperienceBuffer_Experience::_InternalParse(const char* ptr, ::PROTO
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
           _Internal::set_has_action(&has_bits);
-          action_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.action_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -264,7 +281,7 @@ const char* ExperienceBuffer_Experience::_InternalParse(const char* ptr, ::PROTO
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _has_bits_.Or(has_bits);
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -278,33 +295,33 @@ uint8_t* ExperienceBuffer_Experience::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   // required float reward = 1;
   if (cached_has_bits & 0x00000001u) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_reward(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_reward(), target);
   }
 
   // repeated float sensor_reading = 2;
   for (int i = 0, n = this->_internal_sensor_reading_size(); i < n; i++) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_sensor_reading(i), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_sensor_reading(i), target);
   }
 
   // required bool done = 3;
   if (cached_has_bits & 0x00000002u) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_done(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_done(), target);
   }
 
   // required int32 action = 4;
   if (cached_has_bits & 0x00000004u) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_action(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_action(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:atari_prediction.ExperienceBuffer.Experience)
@@ -327,7 +344,7 @@ size_t ExperienceBuffer_Experience::RequiredFieldsByteSizeFallback() const {
 
   if (_internal_has_action()) {
     // required int32 action = 4;
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_action());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_action());
   }
 
   return total_size;
@@ -336,7 +353,7 @@ size_t ExperienceBuffer_Experience::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:atari_prediction.ExperienceBuffer.Experience)
   size_t total_size = 0;
 
-  if (((_has_bits_[0] & 0x00000007) ^ 0x00000007) == 0) {  // All required fields are present.
+  if (((_impl_._has_bits_[0] & 0x00000007) ^ 0x00000007) == 0) {  // All required fields are present.
     // required float reward = 1;
     total_size += 1 + 4;
 
@@ -344,7 +361,7 @@ size_t ExperienceBuffer_Experience::ByteSizeLong() const {
     total_size += 1 + 1;
 
     // required int32 action = 4;
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_action());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_action());
 
   } else {
     total_size += RequiredFieldsByteSizeFallback();
@@ -358,47 +375,43 @@ size_t ExperienceBuffer_Experience::ByteSizeLong() const {
     unsigned int count = static_cast<unsigned int>(this->_internal_sensor_reading_size());
     size_t data_size = 4UL * count;
     total_size += 1 *
-                  ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_sensor_reading_size());
+                  ::_pbi::FromIntSize(this->_internal_sensor_reading_size());
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ExperienceBuffer_Experience::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ExperienceBuffer_Experience::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ExperienceBuffer_Experience::GetClassData() const { return &_class_data_; }
 
-void ExperienceBuffer_Experience::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ExperienceBuffer_Experience *>(to)->MergeFrom(
-      static_cast<const ExperienceBuffer_Experience &>(from));
-}
 
-
-void ExperienceBuffer_Experience::MergeFrom(const ExperienceBuffer_Experience& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:atari_prediction.ExperienceBuffer.Experience)
-  GOOGLE_DCHECK_NE(&from, this);
+void ExperienceBuffer_Experience::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ExperienceBuffer_Experience*>(&to_msg);
+  auto& from = static_cast<const ExperienceBuffer_Experience&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:atari_prediction.ExperienceBuffer.Experience)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  sensor_reading_.MergeFrom(from.sensor_reading_);
-  cached_has_bits = from._has_bits_[0];
+  _this->_impl_.sensor_reading_.MergeFrom(from._impl_.sensor_reading_);
+  cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
-      reward_ = from.reward_;
+      _this->_impl_.reward_ = from._impl_.reward_;
     }
     if (cached_has_bits & 0x00000002u) {
-      done_ = from.done_;
+      _this->_impl_.done_ = from._impl_.done_;
     }
     if (cached_has_bits & 0x00000004u) {
-      action_ = from.action_;
+      _this->_impl_.action_ = from._impl_.action_;
     }
-    _has_bits_[0] |= cached_has_bits;
+    _this->_impl_._has_bits_[0] |= cached_has_bits;
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ExperienceBuffer_Experience::CopyFrom(const ExperienceBuffer_Experience& from) {
@@ -409,25 +422,25 @@ void ExperienceBuffer_Experience::CopyFrom(const ExperienceBuffer_Experience& fr
 }
 
 bool ExperienceBuffer_Experience::IsInitialized() const {
-  if (_Internal::MissingRequiredFields(_has_bits_)) return false;
+  if (_Internal::MissingRequiredFields(_impl_._has_bits_)) return false;
   return true;
 }
 
 void ExperienceBuffer_Experience::InternalSwap(ExperienceBuffer_Experience* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
-  sensor_reading_.InternalSwap(&other->sensor_reading_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.sensor_reading_.InternalSwap(&other->_impl_.sensor_reading_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ExperienceBuffer_Experience, action_)
-      + sizeof(ExperienceBuffer_Experience::action_)
-      - PROTOBUF_FIELD_OFFSET(ExperienceBuffer_Experience, reward_)>(
-          reinterpret_cast<char*>(&reward_),
-          reinterpret_cast<char*>(&other->reward_));
+      PROTOBUF_FIELD_OFFSET(ExperienceBuffer_Experience, _impl_.action_)
+      + sizeof(ExperienceBuffer_Experience::_impl_.action_)
+      - PROTOBUF_FIELD_OFFSET(ExperienceBuffer_Experience, _impl_.reward_)>(
+          reinterpret_cast<char*>(&_impl_.reward_),
+          reinterpret_cast<char*>(&other->_impl_.reward_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ExperienceBuffer_Experience::GetMetadata() const {
-  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+  return ::_pbi::AssignDescriptors(
       &descriptor_table_experience_2eproto_getter, &descriptor_table_experience_2eproto_once,
       file_level_metadata_experience_2eproto[0]);
 }
@@ -436,7 +449,7 @@ void ExperienceBuffer_Experience::InternalSwap(ExperienceBuffer_Experience* othe
 
 class ExperienceBuffer::_Internal {
  public:
-  using HasBits = decltype(std::declval<ExperienceBuffer>()._has_bits_);
+  using HasBits = decltype(std::declval<ExperienceBuffer>()._impl_._has_bits_);
   static void set_has_enviroment_name(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -447,70 +460,79 @@ class ExperienceBuffer::_Internal {
 
 ExperienceBuffer::ExperienceBuffer(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  experiences_(arena) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:atari_prediction.ExperienceBuffer)
 }
 ExperienceBuffer::ExperienceBuffer(const ExperienceBuffer& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_),
-      experiences_(from.experiences_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ExperienceBuffer* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.experiences_){from._impl_.experiences_}
+    , decltype(_impl_.enviroment_name_){}
+    , decltype(_impl_.policy_type_){}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  enviroment_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _impl_.enviroment_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    enviroment_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+    _impl_.enviroment_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (from._internal_has_enviroment_name()) {
-    enviroment_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_enviroment_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.enviroment_name_.Set(from._internal_enviroment_name(), 
+      _this->GetArenaForAllocation());
   }
-  policy_type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _impl_.policy_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    policy_type_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+    _impl_.policy_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (from._internal_has_policy_type()) {
-    policy_type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_policy_type(), 
-      GetArenaForAllocation());
+    _this->_impl_.policy_type_.Set(from._internal_policy_type(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:atari_prediction.ExperienceBuffer)
 }
 
-inline void ExperienceBuffer::SharedCtor() {
-enviroment_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  enviroment_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-policy_type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  policy_type_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void ExperienceBuffer::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.experiences_){arena}
+    , decltype(_impl_.enviroment_name_){}
+    , decltype(_impl_.policy_type_){}
+  };
+  _impl_.enviroment_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.enviroment_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.policy_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.policy_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ExperienceBuffer::~ExperienceBuffer() {
   // @@protoc_insertion_point(destructor:atari_prediction.ExperienceBuffer)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 inline void ExperienceBuffer::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  enviroment_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  policy_type_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _impl_.experiences_.~RepeatedPtrField();
+  _impl_.enviroment_name_.Destroy();
+  _impl_.policy_type_.Destroy();
 }
 
-void ExperienceBuffer::ArenaDtor(void* object) {
-  ExperienceBuffer* _this = reinterpret_cast< ExperienceBuffer* >(object);
-  (void)_this;
-}
-void ExperienceBuffer::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void ExperienceBuffer::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ExperienceBuffer::Clear() {
@@ -519,26 +541,26 @@ void ExperienceBuffer::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  experiences_.Clear();
-  cached_has_bits = _has_bits_[0];
+  _impl_.experiences_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      enviroment_name_.ClearNonDefaultToEmpty();
+      _impl_.enviroment_name_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000002u) {
-      policy_type_.ClearNonDefaultToEmpty();
+      _impl_.policy_type_.ClearNonDefaultToEmpty();
     }
   }
-  _has_bits_.Clear();
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* ExperienceBuffer::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* ExperienceBuffer::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // repeated .atari_prediction.ExperienceBuffer.Experience experiences = 1;
       case 1:
@@ -557,11 +579,11 @@ const char* ExperienceBuffer::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           auto str = _internal_mutable_enviroment_name();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          #ifndef NDEBUG
-          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "atari_prediction.ExperienceBuffer.enviroment_name");
-          #endif  // !NDEBUG
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
+          #ifndef NDEBUG
+          ::_pbi::VerifyUTF8(str, "atari_prediction.ExperienceBuffer.enviroment_name");
+          #endif  // !NDEBUG
         } else
           goto handle_unusual;
         continue;
@@ -569,11 +591,11 @@ const char* ExperienceBuffer::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           auto str = _internal_mutable_policy_type();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          #ifndef NDEBUG
-          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "atari_prediction.ExperienceBuffer.policy_type");
-          #endif  // !NDEBUG
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
+          #ifndef NDEBUG
+          ::_pbi::VerifyUTF8(str, "atari_prediction.ExperienceBuffer.policy_type");
+          #endif  // !NDEBUG
         } else
           goto handle_unusual;
         continue;
@@ -593,7 +615,7 @@ const char* ExperienceBuffer::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _has_bits_.Or(has_bits);
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -608,14 +630,14 @@ uint8_t* ExperienceBuffer::_InternalSerialize(
   (void) cached_has_bits;
 
   // repeated .atari_prediction.ExperienceBuffer.Experience experiences = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_experiences_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_experiences_size()); i < n; i++) {
+    const auto& repfield = this->_internal_experiences(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, this->_internal_experiences(i), target, stream);
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   // optional string enviroment_name = 2;
   if (cached_has_bits & 0x00000001u) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::VerifyUTF8StringNamedField(
@@ -637,7 +659,7 @@ uint8_t* ExperienceBuffer::_InternalSerialize(
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:atari_prediction.ExperienceBuffer)
@@ -654,12 +676,12 @@ size_t ExperienceBuffer::ByteSizeLong() const {
 
   // repeated .atari_prediction.ExperienceBuffer.Experience experiences = 1;
   total_size += 1UL * this->_internal_experiences_size();
-  for (const auto& msg : this->experiences_) {
+  for (const auto& msg : this->_impl_.experiences_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     // optional string enviroment_name = 2;
     if (cached_has_bits & 0x00000001u) {
@@ -676,39 +698,35 @@ size_t ExperienceBuffer::ByteSizeLong() const {
     }
 
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ExperienceBuffer::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ExperienceBuffer::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ExperienceBuffer::GetClassData() const { return &_class_data_; }
 
-void ExperienceBuffer::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ExperienceBuffer *>(to)->MergeFrom(
-      static_cast<const ExperienceBuffer &>(from));
-}
 
-
-void ExperienceBuffer::MergeFrom(const ExperienceBuffer& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:atari_prediction.ExperienceBuffer)
-  GOOGLE_DCHECK_NE(&from, this);
+void ExperienceBuffer::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ExperienceBuffer*>(&to_msg);
+  auto& from = static_cast<const ExperienceBuffer&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:atari_prediction.ExperienceBuffer)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  experiences_.MergeFrom(from.experiences_);
-  cached_has_bits = from._has_bits_[0];
+  _this->_impl_.experiences_.MergeFrom(from._impl_.experiences_);
+  cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _internal_set_enviroment_name(from._internal_enviroment_name());
+      _this->_internal_set_enviroment_name(from._internal_enviroment_name());
     }
     if (cached_has_bits & 0x00000002u) {
-      _internal_set_policy_type(from._internal_policy_type());
+      _this->_internal_set_policy_type(from._internal_policy_type());
     }
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ExperienceBuffer::CopyFrom(const ExperienceBuffer& from) {
@@ -719,7 +737,7 @@ void ExperienceBuffer::CopyFrom(const ExperienceBuffer& from) {
 }
 
 bool ExperienceBuffer::IsInitialized() const {
-  if (!::PROTOBUF_NAMESPACE_ID::internal::AllAreInitialized(experiences_))
+  if (!::PROTOBUF_NAMESPACE_ID::internal::AllAreInitialized(_impl_.experiences_))
     return false;
   return true;
 }
@@ -729,22 +747,20 @@ void ExperienceBuffer::InternalSwap(ExperienceBuffer* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
-  experiences_.InternalSwap(&other->experiences_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.experiences_.InternalSwap(&other->_impl_.experiences_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &enviroment_name_, lhs_arena,
-      &other->enviroment_name_, rhs_arena
+      &_impl_.enviroment_name_, lhs_arena,
+      &other->_impl_.enviroment_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &policy_type_, lhs_arena,
-      &other->policy_type_, rhs_arena
+      &_impl_.policy_type_, lhs_arena,
+      &other->_impl_.policy_type_, rhs_arena
   );
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ExperienceBuffer::GetMetadata() const {
-  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+  return ::_pbi::AssignDescriptors(
       &descriptor_table_experience_2eproto_getter, &descriptor_table_experience_2eproto_once,
       file_level_metadata_experience_2eproto[1]);
 }
@@ -752,10 +768,12 @@ void ExperienceBuffer::InternalSwap(ExperienceBuffer* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace atari_prediction
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::atari_prediction::ExperienceBuffer_Experience* Arena::CreateMaybeMessage< ::atari_prediction::ExperienceBuffer_Experience >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::atari_prediction::ExperienceBuffer_Experience*
+Arena::CreateMaybeMessage< ::atari_prediction::ExperienceBuffer_Experience >(Arena* arena) {
   return Arena::CreateMessageInternal< ::atari_prediction::ExperienceBuffer_Experience >(arena);
 }
-template<> PROTOBUF_NOINLINE ::atari_prediction::ExperienceBuffer* Arena::CreateMaybeMessage< ::atari_prediction::ExperienceBuffer >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::atari_prediction::ExperienceBuffer*
+Arena::CreateMaybeMessage< ::atari_prediction::ExperienceBuffer >(Arena* arena) {
   return Arena::CreateMessageInternal< ::atari_prediction::ExperienceBuffer >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
