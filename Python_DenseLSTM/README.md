@@ -1,1 +1,0 @@
-# columnar_networks
