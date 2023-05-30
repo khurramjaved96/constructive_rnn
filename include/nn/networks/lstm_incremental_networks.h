@@ -33,8 +33,6 @@ class IncrementalNetworks : public BaseLSTM {
   float layer_size;
   float std_cap;
 
-
-  //  These indexes are used to do parallel computation since std::parallel does not provide rank of a thread
   std::vector<int> indexes;
   std::vector<int> indexes_lstm_cells;
 
